@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>创建第一个vue应用</title>
+  </head>
+  <body>
+    <h3>介绍中的相关内容</h3>
+    <div id="counter">
+      Counter:{{counter}}
+      <span v-bind:title="title">鼠标悬停查看文本</span>
+      <div>
+        <h4>事件监听器</h4>
+        <button v-on:click="clickMe">点我</button>
+      </div>
+      <div>
+        <h4>条件</h4>
+        <span v-if="show">显示/隐藏</span>
+        <button v-on:click="showOrHide">控制显示隐藏</button>
+      </div>
+      <div>
+        <h4>循环</h4>
+        <ul>
+          <li v-for="book in books">{{book.title}}</li>
+        </ul>
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const counter = {
+        data() {
+          return {
+            counter: 0,
+            title: 'You loaded this page on ' + new Date().toLocaleString(),
+            show: true,
+            books: [
+              { title: 'css权威指南' },
+              {
+                title: 'javascript权威指南',
+              },
+            ],
+          }
+        },
+        mounted() {
+          setInterval(() => {
+            this.counter++
+          }, 1000)
+        },
+        methods: {
+          clickMe() {
+            alert('x')
+          },
+          showOrHide() {
+            this.show = !this.show
+          },
+        },
+      }
+      Vue.createApp(counter).mount('#counter')
+    </script>
+  </body>
+</html>
